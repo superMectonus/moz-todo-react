@@ -1,3 +1,12 @@
+$lightgray: #888;
+$gray: #555;
+$darkgray: #222;
+$primary: #36c;
+$primary-light: lighten($primary, 37.5%);
+$error: #ca3c3c;
+
+$transition: 0.15s;
+
 /* RESETS */
 *,
 *::before,
@@ -5,7 +14,7 @@
   box-sizing: border-box;
 }
 *:focus {
-  outline: 3px dashed #228bec;
+  outline: 3px solid $primary-light;
   outline-offset: 0;
 }
 html {
@@ -59,7 +68,7 @@ body {
   margin: 0 auto;
   font: 1.6rem/1.25 Arial, sans-serif;
   background-color: #f5f5f5;
-  color: #4d4d4d;
+  color: $darkgray;
 }
 @media screen and (min-width: 620px) {
   body {
@@ -73,31 +82,50 @@ body {
   display: inline-block;
   margin-top: 0.4rem;
 }
+
 .btn {
   padding: 0.8rem 1rem 0.7rem;
-  border: 0.2rem solid #4d4d4d;
+  border: 0.2rem solid $lightgray;
   cursor: pointer;
   text-transform: capitalize;
+  transition: $transition;
+  &:hover {
+    border-color: $darkgray;
+  }
 }
 .btn.toggle-btn {
   border-width: 1px;
-  border-color: #d3d3d3;
+  color: $gray;
+  border-color: $lightgray;
 }
 .btn.toggle-btn[aria-pressed="true"] {
-  text-decoration: underline;
-  border-color: #4d4d4d;
+  pointer-events: none;
+  color: $primary;
+  border-color: $primary;
 }
 .btn__danger {
   color: #fff;
-  background-color: #ca3c3c;
-  border-color: #bd2130;
+  background-color: $error;
+  border-color: $error;
+  transition: $transition;
+  &:hover {
+    background-color: darken($error, 10%);
+    border-color: darken($error, 10%);
+  }
 }
 .btn__filter {
   border-color: lightgrey;
 }
+
 .btn__primary {
   color: #fff;
-  background-color: #000;
+  background-color: $primary ;
+  border-color: $primary ;
+  transition: $transition;
+  &:hover {
+    background-color: darken($primary , 10%);
+    border-color: darken($primary , 10%);
+  }
 }
 .btn-group {
   display: flex;
@@ -150,7 +178,7 @@ body {
   margin: 2rem 0 4rem 0;
   padding: 1rem;
   position: relative;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 20px 0 rgba($darkgray, 0.025);
 }
 @media screen and (min-width: 550px) {
   .todoapp {
@@ -181,11 +209,11 @@ body {
 }
 .input__lg {
   padding: 2rem;
-  border: 2px solid #000;
+  border: 2px solid $lightgray;
 }
 .input__lg:focus {
-  border-color: #4d4d4d;
-  box-shadow: inset 0 0 0 2px;
+  border-color: $gray;
+  // box-shadow: inset 0 0 0 2px;
 }
 [class*="__lg"] {
   display: inline-block;
@@ -267,10 +295,22 @@ body {
   position: absolute;
   border: 2px solid currentColor;
   background: transparent;
+  border-color: $lightgray;
+  transition: $transition;
+}
+.c-cb > input:hover + label::before,
+.c-cb > label:hover::before {
+  border-color: $darkgray;
+}
+.c-cb > input[type="checkbox"]:checked + label::before {
+  border-color: $primary;
+}
+.c-cb > input[type="checkbox"]:checked + label::after {
+  color: $primary;
 }
 .c-cb > input[type="checkbox"]:focus + label::before {
-  border-width: 4px;
-  outline: 3px dashed #228bec;
+  /* border-width: 4px; */
+  outline: 3px solid $primary-light;
 }
 .c-cb > label::after {
   box-sizing: content-box;
