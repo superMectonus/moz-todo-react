@@ -63,7 +63,7 @@ function App(props) {
         <FilterButton />
       </div>
       <h2 id="list-heading">{headingText}</h2>
-      <ul className="todo-list stack-large stack-exception" aria-labelledby="list-heading">
+      <ul className="todo-list stack-large stack-exception" aria-labelledby="list-heading" /* role="list" */>
         {taskList}
       </ul>
     </div>
